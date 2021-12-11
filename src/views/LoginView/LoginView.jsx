@@ -6,13 +6,15 @@ export default function LoginView() {
       <h3 className={styles.title}>Login</h3>
 
       <form className={styles.form}>
-        <input type="text" placeholder="Login" className={styles.input} />
+        <input type="text" placeholder="E-mail" className={styles.input} />
         <input
           type="password"
           placeholder="Password"
           className={styles.input}
         />
-        <button type="button">Login</button>
+        <button type="button" className={styles.button}>
+          Login
+        </button>
       </form>
     </div>
   );

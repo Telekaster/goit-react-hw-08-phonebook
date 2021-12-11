@@ -1,4 +1,18 @@
-const BASE_URL = "https://61b2044cc8d4640017aaf12a.mockapi.io/contacts";
+const BASE_URL = "https://connections-api.herokuapp.com";
+
+export async function registerFetch(data) {
+  const respose = await fetch(`${BASE_URL}/users/signup`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((data) => {
+    return data.json();
+  });
+  console.log(JSON.stringify(data));
+  return respose;
+}
 
 export async function getContactsFetch() {
   const response = await fetch(BASE_URL).then((response) => {

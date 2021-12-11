@@ -1,11 +1,16 @@
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 import {
+  register,
   filterContacts,
   addContactToServer,
   getContactsFromServer,
   removeContactsFromServer,
 } from "./actions";
+
+const userReducer = createReducer("", {
+  [register.fulfilled]: (state, { payload }) => (state = payload),
+});
 
 const contactReducer = createReducer([], {
   [getContactsFromServer.fulfilled]: (state, { payload }) => [
@@ -35,6 +40,7 @@ const filterReducer = createReducer("", {
 });
 
 export const reducers = combineReducers({
+  userReducer,
   contactReducer,
   filterReducer,
   loadingReducer,

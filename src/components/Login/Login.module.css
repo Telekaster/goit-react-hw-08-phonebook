@@ -14,3 +14,8 @@
 .link:focus {
   color: #282e32;
 }
+
+.link__active {
+  composes: link;
+  color: #282e32;
+}

@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import ContactForm from "./components/ContactForm/ContactForm ";
 import Filter from "./components/Filter/Filter";
 import ContactList from "./components/ContactList/ContactList";
-import { BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./views/Header/HeaderView";
 import LoginView from "./views/LoginView/LoginView";
+import RegisterView from "./views/RegisterView/RegisterView";
 
 import {
   getContactsFromServer,
@@ -74,19 +75,26 @@ export default function App() {
   return (
     <>
       <Header />
-      {/* // <Routes> */}
       <div className="container">
-        <LoginView />
-        {/* <ContactForm
-          handleChange={handleChange}
-          handleAddContact={handleAddContact}
-        />
+        <Routes>
+          {/* <Route
+            path="/"
+            exact
+            element={}
+          /> */}
+          <Route path="/login" exact element={<LoginView />} />
+          <Route path="/register" exact element={<RegisterView />} />
+          {/* 
+          <ContactForm
+            handleChange={handleChange}
+            handleAddContact={handleAddContact}
+          /> */}
 
-        <h2>Contacts</h2>
-        <Filter filterContacts={filterer} />
-        <ContactList filter={filter} deleteContact={removeContact} /> */}
+          {/* <h2>Contacts</h2>
+          <Filter filterContacts={filterer} />
+          <ContactList filter={filter} deleteContact={removeContact} /> */}
+        </Routes>
       </div>
-      {/* </Routes> */}
     </>
   );
 }

@@ -1,12 +1,14 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import {
+  registerFetch,
   getContactsFetch,
   removeContactsFetch,
   addContactFetch,
 } from "../api/fetches";
 
-export const filterContacts = createAction("phonebook/filter", (value) => {
-  return { payload: value };
+export const register = createAsyncThunk("auth/register", async (data) => {
+  const token = await registerFetch(data);
+  return token;
 });
 
 export const getContactsFromServer = createAsyncThunk(
@@ -36,3 +38,7 @@ export const addContactToServer = createAsyncThunk(
     return upgradedContact;
   }
 );
+
+export const filterContacts = createAction("phonebook/filter", (value) => {
+  return { payload: value };
+});
