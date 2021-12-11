@@ -1,0 +1,16 @@
+.link {
+  display: block;
+  margin-bottom: 15px;
+  width: 60px;
+  font-family: Roboto;
+  font-size: 16px;
+  line-height: 1.41;
+  color: #ffffff;
+
+  text-decoration: none;
+}
+
+.link:hover,
+.link:focus {
+  color: #282e32;
+}

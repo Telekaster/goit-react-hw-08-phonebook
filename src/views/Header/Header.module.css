@@ -1,0 +1,15 @@
+.header {
+  padding-left: 15px;
+  padding-top: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #28514f;
+  background: #28514f;
+  height: 280px;
+}
+
+.title {
+  font-family: DM Serif Display;
+  font-size: 48px;
+  line-height: 1.16;
+  color: #ffffff;
+}

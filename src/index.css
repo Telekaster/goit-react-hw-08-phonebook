@@ -13,7 +13,9 @@ code {
 }
 
 .container {
-  text-align: center;
-  display: block;
-  margin: auto;
+  padding-left: 15px;
+  /* text-align: center; */
+  /* display: block;
+  margin: auto; */
+  /* background-color: rgba(101, 114, 123, 0.2); */
 }

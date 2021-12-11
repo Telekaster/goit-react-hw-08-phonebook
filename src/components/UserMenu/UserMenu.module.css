@@ -1,0 +1,34 @@
+.login__area {
+  padding-bottom: 15px;
+}
+
+.title {
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.18;
+  color: #fff;
+}
+
+.loginName {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 1.59;
+  color: #ffffff;
+}
+
+.button {
+  cursor: pointer;
+  background: #ffffff;
+  border-radius: 50px;
+  height: 30px;
+  width: 60px;
+
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 1.41;
+  text-align: center;
+  color: #28514f;
+}
