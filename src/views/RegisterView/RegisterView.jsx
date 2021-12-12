@@ -37,11 +37,14 @@ export default function RegisterView() {
     setName("");
     setEmail("");
     setPassword("");
-    navigate("/");
+    navigate("/goit-react-hw-07-phonebook");
   }
 
-  if (location.pathname === "/register" && localStorage.getItem("auth")) {
-    navigate("/");
+  if (
+    location.pathname === "/goit-react-hw-07-phonebook/register" &&
+    localStorage.getItem("auth")
+  ) {
+    navigate("/goit-react-hw-07-phonebook");
   }
   return (
     <div>

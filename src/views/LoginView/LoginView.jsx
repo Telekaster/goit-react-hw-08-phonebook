@@ -32,11 +32,14 @@ export default function LoginView() {
     dispatch(loginAction({ email, password }));
     setEmail("");
     setPassword("");
-    navigate("/");
+    navigate("/goit-react-hw-07-phonebook");
   }
 
-  if (location.pathname === "/login" && localStorage.getItem("auth")) {
-    navigate("/");
+  if (
+    location.pathname === "/goit-react-hw-07-phonebook/login" &&
+    localStorage.getItem("auth")
+  ) {
+    navigate("/goit-react-hw-07-phonebook");
   }
 
   return (

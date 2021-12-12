@@ -21,19 +21,15 @@ export default function App() {
   const [name, setName] = useState();
   const [number, setNumber] = useState();
   const dispatch = useDispatch();
-
   const user = useSelector((store) => {
     return store.userReducer;
   });
-
   const contacts = useSelector((store) => {
     return store.contactReducer;
   });
-
   const filter = useSelector((store) => {
     return store.filterReducer;
   });
-
   const navigate = useNavigate();
 
   function handleChange(evt) {
@@ -88,9 +84,21 @@ export default function App() {
       <Header />
       <div className="container">
         <Routes>
-          <Route path="/" exact element={<HomeView />} />
-          <Route path="/login" exact element={<LoginView />} />
-          <Route path="/register" exact element={<RegisterView />} />
+          <Route
+            path="goit-react-hw-07-phonebook/"
+            exact
+            element={<HomeView />}
+          />
+          <Route
+            path="goit-react-hw-07-phonebook/login"
+            exact
+            element={<LoginView />}
+          />
+          <Route
+            path="goit-react-hw-07-phonebook/register"
+            exact
+            element={<RegisterView />}
+          />
 
           {/* 
           <ContactForm

@@ -6,7 +6,7 @@ export default function Login(params) {
   return (
     <div>
       <NavLink
-        to="login"
+        to="goit-react-hw-07-phonebook/login"
         className={({ isActive }) =>
           isActive ? styles.link__active : styles.link
         }
@@ -14,7 +14,7 @@ export default function Login(params) {
         Login
       </NavLink>
       <NavLink
-        to="register"
+        to="goit-react-hw-07-phonebook/register"
         className={({ isActive }) =>
           isActive ? styles.link__active : styles.link
         }
