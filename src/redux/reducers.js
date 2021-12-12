@@ -11,12 +11,25 @@ import {
   removeContactsFromServer,
 } from "./actions";
 
-const userReducer = createReducer(null, {
-  [register.fulfilled]: (state, { payload }) => (state = payload),
-  [loginAction.fulfilled]: (state, { payload }) => (state = payload),
-  [refreshUserAction.fulfilled]: (state, { payload }) => (state = payload),
-  [logoutAction.fulfulfilled]: (state, { payload }) => (state = payload),
-});
+const userReducer = createReducer(
+  {},
+  {
+    [register.fulfilled]: (state, { payload }) => {
+      return { ...state, ...payload };
+    },
+    [loginAction.fulfilled]: (state, { payload }) => {
+      return { ...state, ...payload };
+    },
+    [refreshUserAction.fulfilled]: (state, { payload }) => {
+      return {
+        ...state,
+        user: { ...payload },
+        token: localStorage.getItem("auth"),
+      };
+    },
+    [logoutAction.fulfilled]: (state, { payload }) => (state = {}),
+  }
+);
 
 const contactReducer = createReducer([], {
   [getContactsFromServer.fulfilled]: (state, { payload }) => [
@@ -34,7 +47,7 @@ const loadingReducer = createReducer(true, {
   [register.pending]: () => true,
   [register.fulfilled]: () => false,
   [register.rejected]: () => false,
-  [loginAction.fulfilled]: () => true,
+  [loginAction.pending]: () => true,
   [loginAction.fulfilled]: () => false,
   [loginAction.fulfilled]: () => false,
   [refreshUserAction.pending]: () => true,

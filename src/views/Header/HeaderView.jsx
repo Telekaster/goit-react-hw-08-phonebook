@@ -8,11 +8,10 @@ export default function Header(params) {
   const user = useSelector((store) => {
     return store.userReducer;
   });
-
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>Phonebook</h1>
-      {user ? <UserMenu /> : <Login />}
+      {Object.keys(user).length !== 0 ? <UserMenu /> : <Login />}
     </header>
   );
 }
