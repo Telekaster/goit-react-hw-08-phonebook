@@ -5,3 +5,25 @@
   line-height: 1.18;
   color: #1b1f2b;
 }
+
+.contacts__area {
+  display: flex;
+}
+
+.newContact__title {
+  text-align: center;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.18;
+  color: #28514f;
+}
+
+.contacts_filter__area {
+  margin-left: 150px;
+  margin-top: 50px;
+}
+
+.contacts__title {
+  composes: newContact__title;
+}

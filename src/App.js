@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ContactForm from "./components/ContactForm/ContactForm ";
-import Filter from "./components/Filter/Filter";
-import ContactList from "./components/ContactList/ContactList";
-import { Route, Routes, Redirect, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Header from "./views/Header/HeaderView";
 import LoginView from "./views/LoginView/LoginView";
 import RegisterView from "./views/RegisterView/RegisterView";
@@ -99,15 +96,6 @@ export default function App() {
             exact
             element={<RegisterView />}
           />
-
-          {/* 
-          <ContactForm
-            handleChange={handleChange}
-            handleAddContact={handleAddContact}
-          /> */}
-          {/* <h2>Contacts</h2>
-          <Filter filterContacts={filterer} />
-          <ContactList filter={filter} deleteContact={removeContact} /> */}
         </Routes>
       </div>
     </>

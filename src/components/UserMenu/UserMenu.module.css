@@ -21,7 +21,7 @@
 
 .button {
   cursor: pointer;
-  background: #28514f;
+  background: #ffffff;
   border-radius: 50px;
   height: 30px;
   width: 60px;
@@ -30,5 +30,5 @@
   font-size: 14px;
   line-height: 1.41;
   text-align: center;
-  color: #ffffff;
+  color: #28514f;
 }
