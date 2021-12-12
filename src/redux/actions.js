@@ -17,7 +17,10 @@ export const register = createAsyncThunk("auth/register", async (data) => {
 
 export const loginAction = createAsyncThunk("auth/login", async (data) => {
   const user = await loginFetch(data);
-  localStorage.setItem("auth", user.token);
+  if (user.token) {
+    localStorage.setItem("auth", user.token);
+  }
+
   return user;
 });
 
@@ -37,9 +40,19 @@ export const logoutAction = createAsyncThunk("auth/logout", async (data) => {
 
 export const getContactsFromServer = createAsyncThunk(
   "contacts/get",
-  async () => {
-    const contacts = getContactsFetch();
+  async (data) => {
+    const contacts = await getContactsFetch(data);
     return contacts;
+  }
+);
+
+export const addContactToServer = createAsyncThunk(
+  "contact/add",
+  async (data, contact) => {
+    await addContactFetch(data, contact);
+
+    const upgradedContact = await getContactsFetch(data);
+    return upgradedContact;
   }
 );
 
@@ -50,16 +63,6 @@ export const removeContactsFromServer = createAsyncThunk(
 
     const newContact = await getContactsFetch();
     return newContact;
-  }
-);
-
-export const addContactToServer = createAsyncThunk(
-  "contact/add",
-  async (contact) => {
-    await addContactFetch(contact);
-
-    const upgradedContact = await getContactsFetch();
-    return upgradedContact;
   }
 );
 

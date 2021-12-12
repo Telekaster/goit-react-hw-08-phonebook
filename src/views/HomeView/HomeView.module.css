@@ -21,9 +21,14 @@
 
 .contacts_filter__area {
   margin-left: 150px;
-  margin-top: 50px;
+  margin-top: 80px;
+}
+
+.contacts_list__area {
+  margin-left: 50px;
 }
 
 .contacts__title {
   composes: newContact__title;
+  margin-left: 140px;
 }

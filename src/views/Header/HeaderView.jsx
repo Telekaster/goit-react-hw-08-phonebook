@@ -8,6 +8,7 @@ export default function Header(params) {
   const user = useSelector((store) => {
     return store.userReducer;
   });
+
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>Phonebook</h1>

@@ -1,0 +1,55 @@
+.contacts {
+  display: block;
+  margin: auto;
+  margin-left: 150px;
+  text-align: center;
+  border: 1px solid black;
+  width: 400px;
+  height: 320px;
+  overflow: scroll;
+}
+.contacts__list {
+  padding: 0px;
+  list-style: none;
+  list-style: none;
+}
+
+.contact__item {
+  /* margin-bottom: 5px; */
+}
+
+.name {
+  margin-right: 15px;
+  font-family: Roboto;
+  font-size: 16px;
+  /* line-height: 1.54; */
+  color: #28514f;
+}
+
+.number {
+  margin-right: 30px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  /* line-height: 1.54; */
+  color: #65727b;
+}
+
+.contacts__list_btn {
+  /* display: block; */
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  background: #28514f;
+  border-radius: 50px;
+  height: 20px;
+  width: 50px;
+
+  font-family: Roboto;
+  font-size: 10px;
+  line-height: 1.41;
+  text-align: center;
+  color: #fff;
+}

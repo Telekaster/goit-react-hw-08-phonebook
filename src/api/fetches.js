@@ -45,7 +45,6 @@ export async function logoutFetch(data) {
     method: "GET",
     headers: {
       Authorization: `Bearer ${data}`,
-      // "Content-Type": "application/json",
     },
   }).then((response) => {
     return response.json();
@@ -53,10 +52,39 @@ export async function logoutFetch(data) {
   return respose;
 }
 
-export async function getContactsFetch() {
-  const response = await fetch(BASE_URL).then((response) => {
+export async function getContactsFetch(data) {
+  const response = await fetch(`${BASE_URL}/contacts`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${data}`,
+    },
+  }).then((response) => {
     return response.json();
   });
+
+  return response;
+}
+
+export async function addContactFetch(data, contact) {
+  const response = await fetch(`${BASE_URL}/contacts`, {
+    method: "POST",
+    body: JSON.stringify(contact),
+    // headers: {
+    //   Authorization: `Bearer ${data}`,
+    //   "Content-Type": "application/json",
+    // },
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    });
+  console.log(data);
+  console.log(contact);
 
   return response;
 }
@@ -65,24 +93,6 @@ export async function removeContactsFetch(id) {
   const response = await fetch(`${BASE_URL}/${id}`, {
     method: "DELETE",
     body: JSON.stringify(id),
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      return data;
-    });
-
-  return response;
-}
-
-export async function addContactFetch(contact) {
-  const response = await fetch(`${BASE_URL}`, {
-    method: "POST",
-    body: JSON.stringify(contact),
-    headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-    },
   })
     .then((response) => {
       return response.json();

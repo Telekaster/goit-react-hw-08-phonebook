@@ -1,7 +1,59 @@
 import React from "react";
 import styles from "./ContactForm.module.css";
+import { useState, useSelector } from "react";
+import { useDispatch } from "react-redux";
+import {
+  getContactsFromServer,
+  filterContacts,
+  removeContactsFromServer,
+  addContactToServer,
+  refreshUserAction,
+} from "../../redux/actions";
 
 export default function ContactForm({ handleChange, handleAddContact }) {
+  const [name, setName] = useState();
+  const [tel, setTel] = useState();
+  const dispatch = useDispatch();
+
+  // const contacts = useSelector((store) => {
+  //   console.log(store);
+  // return store;
+  // });
+
+  function handleChange(evt) {
+    switch (evt.target.name) {
+      case "name":
+        setName(evt.target.value);
+        break;
+
+      case "tel":
+        setTel(evt.target.value);
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  function handleAddContact() {
+    // if (
+    //   contacts[0].find((contact) => {
+    //     return contact.name === name;
+    //   })
+    // ) {
+    //   alert(`${name} is already in contacts`);
+    // } else {
+    const newContact = {
+      name: name,
+      number: tel,
+    };
+
+    const token = localStorage.getItem("auth");
+
+    dispatch(addContactToServer(token, newContact));
+    // }
+  }
+
   return (
     <div className={styles.input__area}>
       <p className={styles.name}>Name</p>
@@ -12,9 +64,10 @@ export default function ContactForm({ handleChange, handleAddContact }) {
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
         required
+        value={name}
       />
       <p className={styles.name}>Phone</p>
-      <input type="tel" name="tel" onChange={handleChange} />
+      <input type="tel" name="tel" onChange={handleChange} value={tel} />
 
       <button
         type="button"

@@ -43,13 +43,28 @@ const contactReducer = createReducer([], {
   [addContactToServer.fulfilled]: (state, { payload }) => [(state = payload)],
 });
 
+const loginReducer = createReducer(false, {
+  [register.pending]: () => false,
+  [register.fulfilled]: () => true,
+  [register.rejected]: () => false,
+  [loginAction.pending]: () => false,
+  [loginAction.fulfilled]: () => true,
+  [loginAction.rejected]: () => false,
+  [refreshUserAction.pending]: () => false,
+  [refreshUserAction.fulfilled]: () => true,
+  [refreshUserAction.rejected]: () => false,
+  [logoutAction.pending]: () => true,
+  [logoutAction.fulfulfilled]: () => false,
+  [logoutAction.rejected]: () => false,
+});
+
 const loadingReducer = createReducer(true, {
   [register.pending]: () => true,
   [register.fulfilled]: () => false,
   [register.rejected]: () => false,
   [loginAction.pending]: () => true,
   [loginAction.fulfilled]: () => false,
-  [loginAction.fulfilled]: () => false,
+  [loginAction.rejected]: () => false,
   [refreshUserAction.pending]: () => true,
   [refreshUserAction.fulfilled]: () => false,
   [refreshUserAction.rejected]: () => false,
@@ -75,4 +90,5 @@ export const reducers = combineReducers({
   contactReducer,
   filterReducer,
   loadingReducer,
+  loginReducer,
 });
