@@ -7,10 +7,37 @@ export async function registerFetch(data) {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((data) => {
-    return data.json();
+  }).then((response) => {
+    return response.json();
   });
-  console.log(JSON.stringify(data));
+  return JSON.parse(respose);
+}
+
+export async function loginFetch(data) {
+  const respose = await fetch(`${BASE_URL}/users/login`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => {
+    return response.json();
+  });
+  return respose;
+}
+
+export async function refreshFetch(data) {
+  const respose = await fetch(`${BASE_URL}/users/current`, {
+    method: "GET",
+    // body: JSON.stringify(data),
+    headers: {
+      Authorization: `Bearer ${data}`,
+
+      "Content-Type": "application/json",
+    },
+  }).then((response) => {
+    return response.json();
+  });
   return respose;
 }
 

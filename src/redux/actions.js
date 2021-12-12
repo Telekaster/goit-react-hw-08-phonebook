@@ -1,15 +1,31 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   registerFetch,
+  loginFetch,
+  refreshFetch,
   getContactsFetch,
   removeContactsFetch,
   addContactFetch,
 } from "../api/fetches";
 
 export const register = createAsyncThunk("auth/register", async (data) => {
-  const token = await registerFetch(data);
-  return token;
+  const user = await registerFetch(data);
+  return user;
 });
+
+export const loginAction = createAsyncThunk("auth/login", async (data) => {
+  const user = await loginFetch(data);
+  localStorage.setItem("auth", user.token);
+  return user;
+});
+
+export const refreshUserAction = createAsyncThunk(
+  "auth/refresh",
+  async (data) => {
+    const user = await refreshFetch(data);
+    return user;
+  }
+);
 
 export const getContactsFromServer = createAsyncThunk(
   "contacts/get",

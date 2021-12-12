@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./RegisterView.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/actions";
 
 export default function RegisterView() {
@@ -8,6 +8,9 @@ export default function RegisterView() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const dispatch = useDispatch();
+  const token = useSelector((store) => {
+    return store.userReducer;
+  });
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -29,11 +32,12 @@ export default function RegisterView() {
     }
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     dispatch(register({ name, email, password }));
     setName("");
     setEmail("");
     setPassword("");
+    console.log(token);
   }
 
   return (

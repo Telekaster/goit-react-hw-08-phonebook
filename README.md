@@ -1,1 +1,1 @@
-https://telekaster.github.io/goit-react-hw-07-phonebook/
+commit: 0.2

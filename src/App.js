@@ -13,6 +13,7 @@ import {
   filterContacts,
   removeContactsFromServer,
   addContactToServer,
+  refreshUserAction,
 } from "./redux/actions";
 
 export default function App() {
@@ -69,6 +70,9 @@ export default function App() {
   }
 
   useEffect(() => {
+    if (localStorage.getItem("auth")) {
+      dispatch(refreshUserAction(localStorage.getItem("auth")));
+    }
     dispatch(getContactsFromServer());
   }, [dispatch]);
 

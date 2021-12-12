@@ -2,14 +2,18 @@ import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 import {
   register,
+  loginAction,
+  refreshUserAction,
   filterContacts,
   addContactToServer,
   getContactsFromServer,
   removeContactsFromServer,
 } from "./actions";
 
-const userReducer = createReducer("", {
+const userReducer = createReducer(null, {
   [register.fulfilled]: (state, { payload }) => (state = payload),
+  [loginAction.fulfilled]: (state, { payload }) => (state = payload),
+  [refreshUserAction.fulfilled]: (state, { payload }) => (state = payload),
 });
 
 const contactReducer = createReducer([], {
@@ -25,6 +29,15 @@ const contactReducer = createReducer([], {
 });
 
 const loadingReducer = createReducer(true, {
+  [register.pending]: () => true,
+  [register.fulfilled]: () => false,
+  [register.rejected]: () => false,
+  [loginAction.fulfilled]: () => true,
+  [loginAction.fulfilled]: () => false,
+  [loginAction.fulfilled]: () => false,
+  [refreshUserAction.pending]: () => true,
+  [refreshUserAction.fulfilled]: () => false,
+  [refreshUserAction.rejected]: () => false,
   [getContactsFromServer.pending]: () => true,
   [getContactsFromServer.fulfilled]: () => false,
   [getContactsFromServer.rejected]: () => false,
