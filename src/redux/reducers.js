@@ -4,6 +4,7 @@ import {
   register,
   loginAction,
   refreshUserAction,
+  logoutAction,
   filterContacts,
   addContactToServer,
   getContactsFromServer,
@@ -14,6 +15,7 @@ const userReducer = createReducer(null, {
   [register.fulfilled]: (state, { payload }) => (state = payload),
   [loginAction.fulfilled]: (state, { payload }) => (state = payload),
   [refreshUserAction.fulfilled]: (state, { payload }) => (state = payload),
+  [logoutAction.fulfulfilled]: (state, { payload }) => (state = payload),
 });
 
 const contactReducer = createReducer([], {
@@ -38,6 +40,9 @@ const loadingReducer = createReducer(true, {
   [refreshUserAction.pending]: () => true,
   [refreshUserAction.fulfilled]: () => false,
   [refreshUserAction.rejected]: () => false,
+  [logoutAction.pending]: () => true,
+  [logoutAction.fulfulfilled]: () => false,
+  [logoutAction.rejected]: () => false,
   [getContactsFromServer.pending]: () => true,
   [getContactsFromServer.fulfilled]: () => false,
   [getContactsFromServer.rejected]: () => false,

@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import styles from "./RegisterView.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/actions";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function RegisterView() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const dispatch = useDispatch();
-  const token = useSelector((store) => {
-    return store.userReducer;
-  });
+  const navigate = useNavigate();
+  const location = useLocation();
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -37,9 +37,12 @@ export default function RegisterView() {
     setName("");
     setEmail("");
     setPassword("");
-    console.log(token);
+    navigate("/");
   }
 
+  if (location.pathname === "/register" && localStorage.getItem("auth")) {
+    navigate("/");
+  }
   return (
     <div>
       <h3 className={styles.title}>Register</h3>

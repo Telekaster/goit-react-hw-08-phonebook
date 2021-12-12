@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import ContactForm from "./components/ContactForm/ContactForm ";
 import Filter from "./components/Filter/Filter";
 import ContactList from "./components/ContactList/ContactList";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes, Redirect, useNavigate } from "react-router-dom";
 import Header from "./views/Header/HeaderView";
 import LoginView from "./views/LoginView/LoginView";
 import RegisterView from "./views/RegisterView/RegisterView";
+import HomeView from "./views/HomeView/HomeView";
 
 import {
   getContactsFromServer,
@@ -21,6 +22,10 @@ export default function App() {
   const [number, setNumber] = useState();
   const dispatch = useDispatch();
 
+  const user = useSelector((store) => {
+    return store.userReducer;
+  });
+
   const contacts = useSelector((store) => {
     return store.contactReducer;
   });
@@ -28,6 +33,8 @@ export default function App() {
   const filter = useSelector((store) => {
     return store.filterReducer;
   });
+
+  const navigate = useNavigate();
 
   function handleChange(evt) {
     switch (evt.target.name) {
@@ -81,19 +88,15 @@ export default function App() {
       <Header />
       <div className="container">
         <Routes>
-          {/* <Route
-            path="/"
-            exact
-            element={}
-          /> */}
+          <Route path="/" exact element={<HomeView />} />
           <Route path="/login" exact element={<LoginView />} />
           <Route path="/register" exact element={<RegisterView />} />
+
           {/* 
           <ContactForm
             handleChange={handleChange}
             handleAddContact={handleAddContact}
           /> */}
-
           {/* <h2>Contacts</h2>
           <Filter filterContacts={filterer} />
           <ContactList filter={filter} deleteContact={removeContact} /> */}

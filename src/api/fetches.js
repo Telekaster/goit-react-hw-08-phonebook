@@ -29,11 +29,23 @@ export async function loginFetch(data) {
 export async function refreshFetch(data) {
   const respose = await fetch(`${BASE_URL}/users/current`, {
     method: "GET",
-    // body: JSON.stringify(data),
     headers: {
       Authorization: `Bearer ${data}`,
 
       "Content-Type": "application/json",
+    },
+  }).then((response) => {
+    return response.json();
+  });
+  return respose;
+}
+
+export async function logoutFetch(data) {
+  const respose = await fetch(`${BASE_URL}/users/current`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${data}`,
+      // "Content-Type": "application/json",
     },
   }).then((response) => {
     return response.json();

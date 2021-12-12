@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import styles from "./LoginView.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../redux/actions";
+import { useNavigate, useLocation } from "react-router-dom";
+import { $CombinedState } from "@reduxjs/toolkit";
 
 export default function LoginView() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -28,6 +32,11 @@ export default function LoginView() {
     dispatch(loginAction({ email, password }));
     setEmail("");
     setPassword("");
+    navigate("/");
+  }
+
+  if (location.pathname === "/login" && localStorage.getItem("auth")) {
+    navigate("/");
   }
 
   return (

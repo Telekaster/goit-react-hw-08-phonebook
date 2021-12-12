@@ -3,6 +3,7 @@ import {
   registerFetch,
   loginFetch,
   refreshFetch,
+  logoutFetch,
   getContactsFetch,
   removeContactsFetch,
   addContactFetch,
@@ -10,6 +11,7 @@ import {
 
 export const register = createAsyncThunk("auth/register", async (data) => {
   const user = await registerFetch(data);
+  localStorage.setItem("auth", user.token);
   return user;
 });
 
@@ -26,6 +28,12 @@ export const refreshUserAction = createAsyncThunk(
     return user;
   }
 );
+
+export const logoutAction = createAsyncThunk("auth/logout", async (data) => {
+  await logoutFetch(data);
+  localStorage.removeItem("auth");
+  window.location.reload();
+});
 
 export const getContactsFromServer = createAsyncThunk(
   "contacts/get",
