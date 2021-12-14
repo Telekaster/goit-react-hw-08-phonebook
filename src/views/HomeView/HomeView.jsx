@@ -4,11 +4,21 @@ import ContactForm from "../../components/ContactForm/ContactForm";
 import Filter from "../../components/Filter/Filter";
 import ContactList from "../../components/ContactList/ContactList";
 import { useDispatch, useSelector } from "react-redux";
+import { filterContacts } from "../../redux/actions";
 
 export default function HomeView() {
   const user = useSelector((store) => {
     return store.userReducer;
   });
+  const dispatch = useDispatch();
+
+  const filter = useSelector((store) => {
+    return store.filterReducer;
+  });
+
+  function filterer(evt) {
+    dispatch(filterContacts(evt.target.value));
+  }
 
   return (
     <>
@@ -20,15 +30,13 @@ export default function HomeView() {
           </div>
 
           <div className={styles.contacts_filter__area}>
-            <Filter
-            // filterContacts={filterer}
-            />
+            <Filter filterContacts={filterer} />
           </div>
           <div>
             <h3 className={styles.contacts__title}>Contacts</h3>
             <ContactList
-            // filter={filter}
-            // deleteContact={removeContact}
+              filter={filter}
+              // deleteContact={removeContact}
             />
           </div>
         </div>

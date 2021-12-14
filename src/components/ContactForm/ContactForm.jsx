@@ -31,20 +31,14 @@ export default function ContactForm() {
   }
 
   function handleAddContact() {
-    // if (
-    //   contacts[0].find((contact) => {
-    //     return contact.name === name;
-    //   })
-    // ) {
-    //   alert(`${name} is already in contacts`);
-    // } else {
     const newContact = {
       name: name,
       number: tel,
     };
 
     dispatch(addContactToServer(newContact));
-    // }
+    setName("");
+    setTel("");
   }
 
   return (

@@ -12,26 +12,22 @@ export default function ContactList({ filter, deleteContact }) {
   const filterValue = useSelector((store) => {
     return store.filterReducer;
   });
+  console.log(contacts);
 
   return (
     <div className={styles.contacts}>
       <ul className={styles.contacts__list}>
-        {/* ----------------------- */}
-        <li className={styles.contact__item}>
-          <span className={styles.name}>John Doe</span>
-          <a className={styles.number} href="tel:+555555555">
-            555-555-555
-          </a>
-          <span></span>
-          <button className={styles.contacts__list_btn}>Delete</button>
-        </li>
-
         {!isLoading &&
           filter === "" &&
+          contacts.length !== 0 &&
           contacts[0].map((item) => {
             return (
-              <li key={item.id}>
-                {`${item.name}: ${item.phone}`}
+              <li key={item.id} className={styles.contact__item}>
+                <span className={styles.name}>{item.name}</span>
+                <a className={styles.number} href="tel:+555555555">
+                  {item.number}
+                </a>
+
                 <button
                   onClick={deleteContact}
                   id={item.id}
@@ -53,15 +49,20 @@ export default function ContactList({ filter, deleteContact }) {
             })
             .map((item) => {
               return (
-                <li key={item.id}>
-                  {`${item.name}: ${item.phone}`}
+                <li key={item.id} className={styles.contact__item}>
+                  <span className={styles.name}>{item.name}</span>
+                  <a className={styles.number} href="tel:+555555555">
+                    {item.number}
+                  </a>
+
                   <button
                     onClick={deleteContact}
+                    id={item.id}
                     type="button"
-                    className="contacts__list_btn"
+                    className={styles.contacts__list_btn}
                   >
                     Delete
-                  </button>{" "}
+                  </button>
                 </li>
               );
             })}
