@@ -7,7 +7,7 @@ import {
   getContacts,
   removeContact,
   addContact,
-} from "../api/api";
+} from "../services/api";
 
 export const registerAction = createAsyncThunk(
   "auth/register",
@@ -23,6 +23,7 @@ export const loginAction = createAsyncThunk("auth/login", async (data) => {
   if (user.token) {
     localStorage.setItem("auth", user.token);
   }
+  window.location.reload();
 
   return user;
 });
@@ -53,7 +54,7 @@ export const addContactToServer = createAsyncThunk(
   "contact/add",
   async (contact) => {
     const result = await addContact(contact);
-    console.log(result);
+
     if (result.id) {
       const upgradedContact = await getContacts();
       return upgradedContact;
@@ -64,10 +65,14 @@ export const addContactToServer = createAsyncThunk(
 export const removeContactsFromServer = createAsyncThunk(
   "contacts/delete",
   async (id) => {
-    await removeContact(id);
+    const result = await removeContact(id);
 
-    const newContact = await getContacts();
-    return newContact;
+    if (Object.keys(result).length === 0) {
+      const upgradedContact = await getContacts();
+      return upgradedContact;
+    }
+
+    return result;
   }
 );
 

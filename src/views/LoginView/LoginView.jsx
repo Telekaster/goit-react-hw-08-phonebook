@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./LoginView.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { loginAction } from "../../redux/actions";
+import { loginAction, getContactsFromServer } from "../../redux/actions";
 import { useNavigate, useLocation } from "react-router-dom";
 import { $CombinedState } from "@reduxjs/toolkit";
 
@@ -11,6 +11,13 @@ export default function LoginView() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const isLoading = useSelector((store) => {
+    return store.loadingReducer;
+  });
+  const login = useSelector((store) => {
+    return store.loginReducer;
+  });
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -30,6 +37,7 @@ export default function LoginView() {
 
   async function handleSubmit() {
     dispatch(loginAction({ email, password }));
+
     setEmail("");
     setPassword("");
     navigate("/goit-react-hw-07-phonebook");

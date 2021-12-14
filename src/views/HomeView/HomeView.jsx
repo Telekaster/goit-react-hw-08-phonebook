@@ -34,10 +34,7 @@ export default function HomeView() {
           </div>
           <div>
             <h3 className={styles.contacts__title}>Contacts</h3>
-            <ContactList
-              filter={filter}
-              // deleteContact={removeContact}
-            />
+            <ContactList filter={filter} />
           </div>
         </div>
       ) : (

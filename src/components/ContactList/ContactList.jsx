@@ -1,5 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { removeContactsFromServer } from "../../redux/actions";
 import styles from "./ContactList.module.css";
 
 export default function ContactList({ filter, deleteContact }) {
@@ -12,7 +13,12 @@ export default function ContactList({ filter, deleteContact }) {
   const filterValue = useSelector((store) => {
     return store.filterReducer;
   });
-  console.log(contacts);
+  const dispatch = useDispatch();
+
+  function removeContact(evt) {
+    const id = evt.target.id;
+    dispatch(removeContactsFromServer(id));
+  }
 
   return (
     <div className={styles.contacts}>
@@ -29,7 +35,7 @@ export default function ContactList({ filter, deleteContact }) {
                 </a>
 
                 <button
-                  onClick={deleteContact}
+                  onClick={removeContact}
                   id={item.id}
                   type="button"
                   className={styles.contacts__list_btn}

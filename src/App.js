@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Header from "./views/Header/HeaderView";
 import LoginView from "./views/LoginView/LoginView";
@@ -13,18 +13,22 @@ import {
 
 export default function App() {
   const dispatch = useDispatch();
-
-  function removeContact(evt) {
-    const id = evt.target.id;
-    dispatch(removeContactsFromServer(id));
-  }
+  const loading = useSelector((store) => {
+    return store.loadingReducer;
+  });
+  const contacts = useSelector((store) => {
+    return store.contactReducer;
+  });
 
   useEffect(() => {
     if (localStorage.getItem("auth")) {
       dispatch(refreshUserAction(localStorage.getItem("auth")));
-      dispatch(getContactsFromServer());
+
+      if (contacts.length === 0) {
+        dispatch(getContactsFromServer());
+      }
     }
-  }, [dispatch]);
+  }, [dispatch, contacts.length]);
 
   return (
     <>

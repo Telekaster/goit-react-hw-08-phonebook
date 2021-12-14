@@ -66,7 +66,6 @@ export async function getContacts() {
 }
 
 export async function addContact(contact) {
-  console.log(contact);
   const response = await fetch(`${BASE_URL}/contacts`, {
     method: "POST",
     body: JSON.stringify(contact),
@@ -86,16 +85,14 @@ export async function addContact(contact) {
 }
 
 export async function removeContact(id) {
-  const response = await fetch(`${BASE_URL}/${id}`, {
+  const response = await fetch(`${BASE_URL}/contacts/${id}`, {
     method: "DELETE",
-    body: JSON.stringify(id),
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      return data;
-    });
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("auth")}`,
+    },
+  }).then((response) => {
+    return response.json();
+  });
 
   return response;
 }

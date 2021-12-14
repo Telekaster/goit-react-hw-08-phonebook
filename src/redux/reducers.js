@@ -36,11 +36,10 @@ const contactReducer = createReducer([], {
     ...state,
     payload,
   ],
+  [addContactToServer.fulfilled]: (state, { payload }) => [(state = payload)],
   [removeContactsFromServer.fulfilled]: (state, { payload }) => [
     (state = payload),
   ],
-
-  [addContactToServer.fulfilled]: (state, { payload }) => [(state = payload)],
 });
 
 const loginReducer = createReducer(false, {
@@ -58,7 +57,7 @@ const loginReducer = createReducer(false, {
   [logoutAction.rejected]: () => false,
 });
 
-const loadingReducer = createReducer(true, {
+const loadingReducer = createReducer(false, {
   [registerAction.pending]: () => true,
   [registerAction.fulfilled]: () => false,
   [registerAction.rejected]: () => false,
@@ -71,9 +70,9 @@ const loadingReducer = createReducer(true, {
   [logoutAction.pending]: () => true,
   [logoutAction.fulfulfilled]: () => false,
   [logoutAction.rejected]: () => false,
-  [getContactsFromServer.pending]: () => true,
-  [getContactsFromServer.fulfilled]: () => false,
-  [getContactsFromServer.rejected]: () => false,
+  // [getContactsFromServer.pending]: () => true,
+  // [getContactsFromServer.fulfilled]: () => false,
+  // [getContactsFromServer.rejected]: () => false,
   [removeContactsFromServer.pending]: () => true,
   [removeContactsFromServer.fulfilled]: () => false,
   [removeContactsFromServer.rejected]: () => false,
