@@ -27,7 +27,7 @@ export default function App() {
   const login = useSelector((store) => {
     return store.loginReducer;
   });
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   function filterer(evt) {
     dispatch(filterContacts(evt.target.value));
@@ -43,7 +43,7 @@ export default function App() {
       dispatch(refreshUserAction(localStorage.getItem("auth")));
     }
     if (login) {
-      dispatch(getContactsFromServer(localStorage.getItem("auth")));
+      dispatch(getContactsFromServer());
     }
   }, [dispatch]);
 

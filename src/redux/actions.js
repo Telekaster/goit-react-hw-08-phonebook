@@ -51,11 +51,13 @@ export const getContactsFromServer = createAsyncThunk(
 
 export const addContactToServer = createAsyncThunk(
   "contact/add",
-  async (data, contact) => {
-    await addContact(data, contact);
-
-    const upgradedContact = await getContacts(data);
-    return upgradedContact;
+  async (contact) => {
+    const result = await addContact(contact);
+    console.log(result);
+    if (result.id) {
+      const upgradedContact = await getContacts();
+      return upgradedContact;
+    }
   }
 );
 

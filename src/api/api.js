@@ -52,11 +52,11 @@ export async function logout(data) {
   return respose;
 }
 
-export async function getContacts(data) {
+export async function getContacts() {
   const response = await fetch(`${BASE_URL}/contacts`, {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${data}`,
+      Authorization: `Bearer ${localStorage.getItem("auth")}`,
     },
   }).then((response) => {
     return response.json();
@@ -65,7 +65,8 @@ export async function getContacts(data) {
   return response;
 }
 
-export async function addContact(data, contact) {
+export async function addContact(contact) {
+  console.log(contact);
   const response = await fetch(`${BASE_URL}/contacts`, {
     method: "POST",
     body: JSON.stringify(contact),
@@ -80,8 +81,6 @@ export async function addContact(data, contact) {
     .then((data) => {
       return data;
     });
-  console.log(data);
-  console.log(contact);
 
   return response;
 }

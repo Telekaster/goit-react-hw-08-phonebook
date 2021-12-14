@@ -16,10 +16,7 @@ export default function HomeView() {
         <div className={styles.contacts__area}>
           <div>
             <h3 className={styles.newContact__title}>Create new contact</h3>
-            <ContactForm
-            // handleChange={handleChange}
-            // handleAddContact={handleAddContact}
-            />
+            <ContactForm />
           </div>
 
           <div className={styles.contacts_filter__area}>

@@ -10,15 +10,10 @@ import {
   refreshUserAction,
 } from "../../redux/actions";
 
-export default function ContactForm({ handleChange, handleAddContact }) {
+export default function ContactForm() {
   const [name, setName] = useState();
   const [tel, setTel] = useState();
   const dispatch = useDispatch();
-
-  // const contacts = useSelector((store) => {
-  //   console.log(store);
-  // return store;
-  // });
 
   function handleChange(evt) {
     switch (evt.target.name) {
@@ -48,9 +43,7 @@ export default function ContactForm({ handleChange, handleAddContact }) {
       number: tel,
     };
 
-    const token = localStorage.getItem("auth");
-
-    dispatch(addContactToServer(token, newContact));
+    dispatch(addContactToServer(newContact));
     // }
   }
 
