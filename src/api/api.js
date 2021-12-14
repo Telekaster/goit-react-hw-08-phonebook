@@ -1,6 +1,6 @@
 const BASE_URL = "https://connections-api.herokuapp.com";
 
-export async function registerFetch(data) {
+export async function register(data) {
   const respose = await fetch(`${BASE_URL}/users/signup`, {
     method: "POST",
     body: JSON.stringify(data),
@@ -13,7 +13,7 @@ export async function registerFetch(data) {
   return JSON.parse(respose);
 }
 
-export async function loginFetch(data) {
+export async function login(data) {
   const respose = await fetch(`${BASE_URL}/users/login`, {
     method: "POST",
     body: JSON.stringify(data),
@@ -26,7 +26,7 @@ export async function loginFetch(data) {
   return respose;
 }
 
-export async function refreshFetch(data) {
+export async function refresh(data) {
   const respose = await fetch(`${BASE_URL}/users/current`, {
     method: "GET",
     headers: {
@@ -40,7 +40,7 @@ export async function refreshFetch(data) {
   return respose;
 }
 
-export async function logoutFetch(data) {
+export async function logout(data) {
   const respose = await fetch(`${BASE_URL}/users/current`, {
     method: "GET",
     headers: {
@@ -52,7 +52,7 @@ export async function logoutFetch(data) {
   return respose;
 }
 
-export async function getContactsFetch(data) {
+export async function getContacts(data) {
   const response = await fetch(`${BASE_URL}/contacts`, {
     method: "GET",
     headers: {
@@ -65,16 +65,13 @@ export async function getContactsFetch(data) {
   return response;
 }
 
-export async function addContactFetch(data, contact) {
+export async function addContact(data, contact) {
   const response = await fetch(`${BASE_URL}/contacts`, {
     method: "POST",
     body: JSON.stringify(contact),
-    // headers: {
-    //   Authorization: `Bearer ${data}`,
-    //   "Content-Type": "application/json",
-    // },
     headers: {
-      "Content-Type": "application/json; charset=UTF-8",
+      Authorization: `Bearer ${localStorage.getItem("auth")}`,
+      "Content-Type": "application/json",
     },
   })
     .then((response) => {
@@ -89,7 +86,7 @@ export async function addContactFetch(data, contact) {
   return response;
 }
 
-export async function removeContactsFetch(id) {
+export async function removeContact(id) {
   const response = await fetch(`${BASE_URL}/${id}`, {
     method: "DELETE",
     body: JSON.stringify(id),

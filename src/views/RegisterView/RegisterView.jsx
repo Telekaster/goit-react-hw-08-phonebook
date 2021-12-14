@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./RegisterView.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../../redux/actions";
+import { registerAction } from "../../redux/actions";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function RegisterView() {
@@ -33,7 +33,7 @@ export default function RegisterView() {
   }
 
   async function handleSubmit() {
-    dispatch(register({ name, email, password }));
+    dispatch(registerAction({ name, email, password }));
     setName("");
     setEmail("");
     setPassword("");

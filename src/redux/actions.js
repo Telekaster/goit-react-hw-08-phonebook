@@ -1,22 +1,25 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  registerFetch,
-  loginFetch,
-  refreshFetch,
-  logoutFetch,
-  getContactsFetch,
-  removeContactsFetch,
-  addContactFetch,
-} from "../api/fetches";
+  register,
+  login,
+  refresh,
+  logout,
+  getContacts,
+  removeContact,
+  addContact,
+} from "../api/api";
 
-export const register = createAsyncThunk("auth/register", async (data) => {
-  const user = await registerFetch(data);
-  localStorage.setItem("auth", user.token);
-  return user;
-});
+export const registerAction = createAsyncThunk(
+  "auth/register",
+  async (data) => {
+    const user = await register(data);
+    localStorage.setItem("auth", user.token);
+    return user;
+  }
+);
 
 export const loginAction = createAsyncThunk("auth/login", async (data) => {
-  const user = await loginFetch(data);
+  const user = await login(data);
   if (user.token) {
     localStorage.setItem("auth", user.token);
   }
@@ -27,13 +30,13 @@ export const loginAction = createAsyncThunk("auth/login", async (data) => {
 export const refreshUserAction = createAsyncThunk(
   "auth/refresh",
   async (data) => {
-    const user = await refreshFetch(data);
+    const user = await refresh(data);
     return user;
   }
 );
 
 export const logoutAction = createAsyncThunk("auth/logout", async (data) => {
-  await logoutFetch(data);
+  await logout(data);
   localStorage.removeItem("auth");
   window.location.reload();
 });
@@ -41,7 +44,7 @@ export const logoutAction = createAsyncThunk("auth/logout", async (data) => {
 export const getContactsFromServer = createAsyncThunk(
   "contacts/get",
   async (data) => {
-    const contacts = await getContactsFetch(data);
+    const contacts = await getContacts(data);
     return contacts;
   }
 );
@@ -49,9 +52,9 @@ export const getContactsFromServer = createAsyncThunk(
 export const addContactToServer = createAsyncThunk(
   "contact/add",
   async (data, contact) => {
-    await addContactFetch(data, contact);
+    await addContact(data, contact);
 
-    const upgradedContact = await getContactsFetch(data);
+    const upgradedContact = await getContacts(data);
     return upgradedContact;
   }
 );
@@ -59,9 +62,9 @@ export const addContactToServer = createAsyncThunk(
 export const removeContactsFromServer = createAsyncThunk(
   "contacts/delete",
   async (id) => {
-    await removeContactsFetch(id);
+    await removeContact(id);
 
-    const newContact = await getContactsFetch();
+    const newContact = await getContacts();
     return newContact;
   }
 );

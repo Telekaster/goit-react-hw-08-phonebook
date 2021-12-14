@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 import {
-  register,
+  registerAction,
   loginAction,
   refreshUserAction,
   logoutAction,
@@ -14,7 +14,7 @@ import {
 const userReducer = createReducer(
   {},
   {
-    [register.fulfilled]: (state, { payload }) => {
+    [registerAction.fulfilled]: (state, { payload }) => {
       return { ...state, ...payload };
     },
     [loginAction.fulfilled]: (state, { payload }) => {
@@ -44,9 +44,9 @@ const contactReducer = createReducer([], {
 });
 
 const loginReducer = createReducer(false, {
-  [register.pending]: () => false,
-  [register.fulfilled]: () => true,
-  [register.rejected]: () => false,
+  [registerAction.pending]: () => false,
+  [registerAction.fulfilled]: () => true,
+  [registerAction.rejected]: () => false,
   [loginAction.pending]: () => false,
   [loginAction.fulfilled]: () => true,
   [loginAction.rejected]: () => false,
@@ -59,9 +59,9 @@ const loginReducer = createReducer(false, {
 });
 
 const loadingReducer = createReducer(true, {
-  [register.pending]: () => true,
-  [register.fulfilled]: () => false,
-  [register.rejected]: () => false,
+  [registerAction.pending]: () => true,
+  [registerAction.fulfilled]: () => false,
+  [registerAction.rejected]: () => false,
   [loginAction.pending]: () => true,
   [loginAction.fulfilled]: () => false,
   [loginAction.rejected]: () => false,
