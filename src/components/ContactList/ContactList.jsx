@@ -30,7 +30,7 @@ export default function ContactList({ filter, deleteContact }) {
             return (
               <li key={item.id} className={styles.contact__item}>
                 <span className={styles.name}>{item.name}</span>
-                <a className={styles.number} href="tel:+555555555">
+                <a className={styles.number} href={item.number}>
                   {item.number}
                 </a>
 
@@ -57,7 +57,7 @@ export default function ContactList({ filter, deleteContact }) {
               return (
                 <li key={item.id} className={styles.contact__item}>
                   <span className={styles.name}>{item.name}</span>
-                  <a className={styles.number} href="tel:+555555555">
+                  <a className={styles.number} href={item.number}>
                     {item.number}
                   </a>
 

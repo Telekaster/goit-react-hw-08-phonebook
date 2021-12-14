@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import styles from "./UserMenu.module.css";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAction } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
+import styles from "./UserMenu.module.css";
 
 export default function UserMenu() {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export default function UserMenu() {
 
   function logoutHandler() {
     dispatch(logoutAction());
-    navigate("/goit-react-hw-07-phonebook");
+    navigate("/goit-react-hw-08-phonebook");
   }
 
   return (

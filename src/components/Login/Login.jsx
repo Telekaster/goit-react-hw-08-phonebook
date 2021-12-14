@@ -1,12 +1,12 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Login.module.css";
 
-export default function Login(params) {
+export default function Login() {
   return (
     <div>
       <NavLink
-        to="goit-react-hw-07-phonebook/login"
+        to="goit-react-hw-08-phonebook/login"
         className={({ isActive }) =>
           isActive ? styles.link__active : styles.link
         }
@@ -14,7 +14,7 @@ export default function Login(params) {
         Login
       </NavLink>
       <NavLink
-        to="goit-react-hw-07-phonebook/register"
+        to="goit-react-hw-08-phonebook/register"
         className={({ isActive }) =>
           isActive ? styles.link__active : styles.link
         }

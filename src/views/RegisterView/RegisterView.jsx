@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styles from "./RegisterView.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { registerAction } from "../../redux/actions";
 import { useNavigate, useLocation } from "react-router-dom";
+import styles from "./RegisterView.module.css";
 
 export default function RegisterView() {
   const [name, setName] = useState();
@@ -37,14 +37,14 @@ export default function RegisterView() {
     setName("");
     setEmail("");
     setPassword("");
-    navigate("/goit-react-hw-07-phonebook");
+    navigate("/goit-react-hw-08-phonebook/");
   }
 
   if (
-    location.pathname === "/goit-react-hw-07-phonebook/register" &&
+    location.pathname === "/goit-react-hw-08-phonebook/register" &&
     localStorage.getItem("auth")
   ) {
-    navigate("/goit-react-hw-07-phonebook");
+    navigate("/goit-react-hw-08-phonebook/");
   }
   return (
     <div>

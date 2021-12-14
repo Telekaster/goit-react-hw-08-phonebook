@@ -5,17 +5,10 @@ import Header from "./views/Header/HeaderView";
 import LoginView from "./views/LoginView/LoginView";
 import RegisterView from "./views/RegisterView/RegisterView";
 import HomeView from "./views/HomeView/HomeView";
-import {
-  getContactsFromServer,
-  removeContactsFromServer,
-  refreshUserAction,
-} from "./redux/actions";
+import { getContactsFromServer, refreshUserAction } from "./redux/actions";
 
 export default function App() {
   const dispatch = useDispatch();
-  const loading = useSelector((store) => {
-    return store.loadingReducer;
-  });
   const contacts = useSelector((store) => {
     return store.contactReducer;
   });
@@ -36,17 +29,17 @@ export default function App() {
       <div className="container">
         <Routes>
           <Route
-            path="goit-react-hw-07-phonebook/"
+            path="goit-react-hw-08-phonebook/"
             exact
             element={<HomeView />}
           />
           <Route
-            path="goit-react-hw-07-phonebook/login"
+            path="goit-react-hw-08-phonebook/login"
             exact
             element={<LoginView />}
           />
           <Route
-            path="goit-react-hw-07-phonebook/register"
+            path="goit-react-hw-08-phonebook/register"
             exact
             element={<RegisterView />}
           />
